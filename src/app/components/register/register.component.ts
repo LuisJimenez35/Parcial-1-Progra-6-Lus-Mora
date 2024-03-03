@@ -1,18 +1,23 @@
+// Object: RegisterComponent
 import { Component, OnInit } from '@angular/core';
 import { FormControl, FormGroup, Validators } from '@angular/forms';
 import { Router } from '@angular/router';
 import { UserService } from 'src/app/services/user.service';
 
+//Declaracion del componente
 @Component({
   selector: 'app-register',
   templateUrl: './register.component.html',
   styleUrls: ['./register.component.css']
 })
+
+//Clase del componente y se exporta
 export class RegisterComponent implements OnInit {
 
   formReg: FormGroup;
   showErrorModal: boolean = false;
 
+  //Constructor del componente
   constructor(
     private userService: UserService,
     private router: Router
@@ -23,9 +28,11 @@ export class RegisterComponent implements OnInit {
     });
   }
 
+  //Metodo OnInit del ciclo de vida del componente
   ngOnInit(): void {
   }
 
+  //Metodo onSubmit para el envio de datos del formulario
   onSubmit() {
     if (this.formReg.valid) {
       this.userService.register(this.formReg.value)
@@ -41,6 +48,7 @@ export class RegisterComponent implements OnInit {
     }
   }
 
+  //Metodo para el cierre del modal de error
   closeModal() {
     this.showErrorModal = false;
   }
